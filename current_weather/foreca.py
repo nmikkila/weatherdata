@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
 #
 # Fetch and parse current weather observations from www.foreca.fi
 #
 # v0.9 2017-02-19
-#
 # License: MIT
-#
 
 import datetime
 import json
@@ -99,7 +98,7 @@ def parse_observations(stations, observations):
 
 def pretty_print(data):
     for o in data:
-        print("""
+        print(u"""
 {}
   time:         {}
   weathertype:  {}
@@ -114,12 +113,14 @@ def pretty_print(data):
             o["station"],
             o["timestamp"],
             o["wx"],
-            o["temperature"], o["temperature_feels_like"],
+            o["temperature"],
+            o["temperature_feels_like"],
             o["windspeed"], o["windalt"],
             o["pressure"],
             o["dewpoint"],
             o["humidity"],
-            o["visibility"], o["visibility_unit"],
+            o["visibility"],
+            o["visibility_unit"] if o["visibility_unit"] != "null" else "km",
             o["snow_depth"]))
 
 def main():
